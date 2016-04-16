@@ -44,11 +44,12 @@ class RpcBus(
     class Builder @JvmOverloads constructor(private var connectionEngine: ConnectionEngine = LoopbackConnectionEngine()) {
         private val posters = HashMap<Int, Poster>()
 
-        fun addPoster(poster: Poster) {
+        fun addPoster(poster: Poster) : Builder {
             if (poster.posterId in posters)
-                throw AssertionError("Duplicate psoter ids")
+                throw AssertionError("Duplicate poster ids")
 
             posters.put(poster.posterId, poster)
+            return this
         }
 
         fun build(): RpcBus {
@@ -57,7 +58,7 @@ class RpcBus(
 
         init {
             addPoster(InstantPoster())
-            addPoster(NewThreadPoster(Executors.newCachedThreadPool()))
+            addPoster(NewThreadPoster())
         }
     }
 }

@@ -3,8 +3,13 @@ package me.tomalka.rpcbus.utils
 import java.util.*
 
 class FifoCache<K, V>(val maxSize: Int) {
-    val items = HashMap<K, V>()
-    val deletion_queue = LinkedList<K>()
+    private val items = HashMap<K, V>()
+    private val deletion_queue = LinkedList<K>()
+
+    init {
+        if (maxSize <= 0)
+            throw AssertionError("Can't have a cache of <= 0 elements")
+    }
 
     fun clear() {
         items.clear()

@@ -12,7 +12,7 @@ inline fun <T> MutableList<T>.removeIf(predicate: (T) -> Boolean) {
     }
 }
 
-inline fun <K, V> FifoCache<K, V>.getOrPut(key: K, defaultValue: () -> V): V {
+inline fun <K, V> FifoCache<K, V>.getOrPutNew(key: K, defaultValue: () -> V): V {
     val value = get(key)
     return if (value == null) {
         val answer = defaultValue()

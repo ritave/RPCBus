@@ -1,1 +1,1 @@
-include ':mobile', ':wear', ':rpcbus'
+include ':mobile', ':wear', ':rpcbus', ':rpcbus-android'
